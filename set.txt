@@ -1,0 +1,10 @@
+class AuthPersonalAreaSettings:
+    valid_email_one = 'alone.test1@mail.ru'
+    # valid_num_phone = '+79068080311'  # Другой акк C819-44D7-B4AE , 1825
+    valid_code = '2728-4DD2-B96E'  # Код для акк alone.tests1@mail.ru
+    valid_email_one_text = 'Валидный email #1'
+    valid_num_phone_text = 'Валидный №телефона #1'
+    valid_code_text = 'Валидный код-скидка'
+    in_valid_email_v1 = 'фдщту.еуые1@mail.ru'
+    in_valid_email_v2 = 'фдщту.еуые1@маил.рф'
+    in_valid_email_v3 = ''
