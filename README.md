@@ -1,12 +1,7 @@
-Introduction
-------------
+Версия v.1 - пункты чек листас 1 по 10
 
-This repository contains basic example of usage PageObject
-pattern with Selenium and Python (PyTest + Selenium).
-
-Video screencast with the description ot this code:
-https://www.youtube.com/watch?v=BRxp1Kn1G7w
-
+ссылка на чек лист:docs.google.com/spreadsheets/d/1VrgvQVA5jsMJJyTWQWoBctUGF6ClUg3lkx3vL6Mr574/edit?pli=1#gid=888275549
+Адрес тестового веб приложения: ExLab Landing http://test.exlab.team/#
 
 Files
 -----
@@ -20,22 +15,8 @@ Files
 
 [pages/elements.py](pages/elements.py) содержит вспомогательный класс для определения веб-элементов на веб-страницах.
 
-[tests/](tests/test_general_searh.py, test_header_menu.py, test_per_area.py, test_card_product)
- содержат Web UI тесты для Лабиринт (https://labirint.ru/)
-test_general_searh.py  - проверки общей поисково строки (
-
-)
-test_header_menu.py - прокликивание навигационного меню в шапке(
-Книги, Главное2022, Школа, Канцтовары, клуб
-)
-test_per_area.py - проверка Личного кабинета(
-Проверка иконки Личного кабинета- клик на иконку, прокликивание  всплывающего меню.
-Проверка входа в Личный кабинет- по  использованю почты(пока ток позитивные для почты ) и подтверждению при помощи
-ключа-кода, вход используя код-ключ
-)
-test_card_product - проверка количества карточек товара на сайте
-Подробнее про проверки см:
- _https://docs.google.com/document/d/1ZKM_i8HUbqVC75ZVe15vxBol_cG5VryAaGYNORmcTzE/edit?usp=sharing_ 
+[tests/]
+test_base_page_head.py
 
 
 How To Run Tests
