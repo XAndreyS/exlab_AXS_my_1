@@ -10,6 +10,12 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.keys import Keys
 
 
+from selenium import webdriver
+from selenium.common.exceptions import TimeoutException
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
 class WebElement(object):
 
     _locator = ('', '')
@@ -210,6 +216,10 @@ class WebElement(object):
         # Make screen-shot of the page:
         self._web_driver.save_screenshot(file_name)
 
+    def scroll_my(self):
+        element = self.find()
+        element.send_keys(Keys.END)
+
     def scroll_to_element(self):
         """ Scroll page to the element.
          Прокрутите страницу до элемента."""
@@ -223,7 +233,7 @@ class WebElement(object):
         # Option #2 to scroll to element(Вариант №2 для прокрутки до элемента:):
         try:
             element.send_keys(Keys.DOWN)
-        except Exception as e:
+        except Exception as e:#
             pass  # Just ignore the error if we can't send the keys to the element -  Просто игнорируйте ошибку, если мы не можем отправить ключи к элементу
 
     def delete(self):
@@ -267,6 +277,26 @@ class WebElement(object):
             self._page.wait_page_loaded()
 
 
+    def get_property(self, attr_name):
+        """ Тестирование моей новой функции"""
+        results = []
+        element = self.find()
+
+
+        results= element.get_property(attr_name)
+
+        return results
+
+
+    def get_css(self, attr_name):
+        """ Тестирование моей новой функции, получение css"""
+        results = []
+        element = self.find()
+
+
+        results= element.value_of_css_property(attr_name)
+
+        return results
 
 class ManyWebElements(WebElement):
 
@@ -339,6 +369,8 @@ class ManyWebElements(WebElement):
             results.append(element.get_attribute(attr_name))
 
         return results
+
+
 
     def highlight_and_make_screenshot(self, file_name='element.png'):
         """ Highlight elements and make the screen-shot of all page.

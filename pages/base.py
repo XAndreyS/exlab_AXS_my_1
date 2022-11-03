@@ -47,6 +47,10 @@ class WebPage(object):
     def screenshot(self, file_name='screenshot.png'):
         self._web_driver.save_screenshot(file_name)
 
+    def scroll_my_base(self):
+        self._web_driver.execute_script("window.scrollTo(0, -250);")
+        #self._web_driver.execute_script('window.scrollTo(0, document.body.scrollHeight);')
+
     def scroll_down(self, offset=0):
         """ Scroll the page down.
         Прокрутите страницу вниз."""
@@ -65,6 +69,11 @@ class WebPage(object):
             self._web_driver.execute_script('window.scrollTo(0, -{0});'.format(offset))
         else:
             self._web_driver.execute_script('window.scrollTo(0, -document.body.scrollHeight);')
+
+    def switch_to_next_window(self, heandles=1):
+        """Переключение на  следующую вкладку в браузере"""
+        #wd = self._web_driver
+        self._web_driver.switch_to.window(self._web_driver.window_handles[heandles])
 
     def switch_to_iframe(self, iframe):
         """ Switch to iframe by it's name.
@@ -94,6 +103,7 @@ class WebPage(object):
             print(colored('Can not get page source', 'red'))  # Не удается получить исходный код страницы
 
         return source
+
 
     def check_js_errors(self, ignore_list=None):
         """ This function checks JS errors on the page.
