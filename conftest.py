@@ -136,6 +136,8 @@ def pytest_collection_finish(session):
                 full_name = get_test_case_docstring(item)
                 print(full_name)
         time.sleep(2)
+
         pytest.exit('Done!')
+        #quit()
         #pytest.quit # мои мучения по предотвращению не  закрытия процессов браузера на моём ПК
         time.sleep(3) # # мои мучения по предотвращению не  закрытия процессов браузера на моём ПК

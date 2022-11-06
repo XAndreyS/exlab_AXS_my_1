@@ -17,6 +17,7 @@ class BaseUrl(WebPage):
     WAIT_LOAD = WebPage.wait_page_loaded
     GET_URL = WebPage.get_current_url
 
+
 class BlockHeader(WebPage):
 
     def __init__(self, web_driver, url=''):
@@ -68,3 +69,90 @@ class BlockHeader(WebPage):
     GET_PAGE = WebPage.get_page_source
     # Переключить вкладку
     SWITCH_WINDOW = WebPage.switch_to_next_window
+
+
+class YourOpportunity(WebPage):
+
+    def __init__(self, web_driver, url=''):
+        if not url:
+            url = os.getenv("MAIN_URL") or 'http://test.exlab.team/'
+
+        super().__init__(web_driver, url)
+
+    # Логотип в разделе твоя возможность
+    IMG_LOGO = WebElement(xpath='//img[@alt="gif_logo"]')
+    # Текст Твоя возможность
+    TEXT_YOUR_OPPORTUNITY = WebElement(xpath='//div[@class="sc-kgflAQ gupdxc"]')
+    # текст под надписью Твоя возможность (список)
+    TEXT_UNDER_YOUR_OPPORTUNITY = ManyWebElements(xpath='//li[@class="sc-cxabCf iOiPKd"]')
+    TEXT_UNDER_YOUR_OPPORTUNITY_SOFT_SKILLS = WebElement(xpath='//li[@class="sc-ezWOiH dzMypq"]')
+    # Ждать загрузку страницы
+    WAIT_LOAD = WebPage.wait_page_loaded
+
+
+class AboutUs(WebPage):
+
+    def __init__(self, web_driver, url=''):
+        if not url:
+            url = os.getenv("MAIN_URL") or 'http://test.exlab.team/'
+
+        super().__init__(web_driver, url)
+
+    # Ждать загрузку страницы
+    WAIT_LOAD = WebPage.wait_page_loaded
+    # Получить url страницы
+    GET_URL = WebPage.get_current_url
+    GET_PAGE = WebPage.get_page_source
+    # Переключить вкладку
+    SWITCH_WINDOW = WebPage.switch_to_next_window
+
+    # Заголовок блока О нас в body
+    H1_ABOUT_US = WebElement(xpath='//div[@class="sc-eCYdqJ koNCEH is-inview"]')
+    # Текст под заголовком в блоке О нас(в правой части экрана)
+    TEXT_ABOUT_US = WebElement(xpath='//p[@class="sc-cCsOjp cdaqyF"]')
+    # Заголовок Почему ExLab?
+    H1_WHY_EXLAB = WebElement(xpath='//div[@class="sc-bZnhIo CLhmH is-inview"]')
+    # Текст поднадписью Почему ExLab? (список)
+    TEXT_WHY_EXLAB = ManyWebElements(xpath='//li[@class="sc-efBctP bQeQvl"]')
+    # Кнопка присоедениться
+    BUTTON_JOIN = WebElement(xpath='//a[@class="sc-dkzDqf gpYSxm is-inview"]')
+    # URL t.me перехода в группу Exlab, приложения телеграмм
+    URL_JOIN_TELEGRAMM = 'https://t.me/ExLab_registration_bot'
+
+    MOVE_DOWN = WebPage.scroll_down
+    BODY = WebElement(tag_name='html')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -48,10 +48,10 @@ class WebPage(object):
         self._web_driver.save_screenshot(file_name)
 
     def scroll_my_base(self):
-        self._web_driver.execute_script("window.scrollTo(0, -250);")
+        self._web_driver.execute_script("window.scrollTo(0, 1080);")
         #self._web_driver.execute_script('window.scrollTo(0, document.body.scrollHeight);')
 
-    def scroll_down(self, offset=0):
+    def scroll_down(self, offset=1000):
         """ Scroll the page down.
         Прокрутите страницу вниз."""
 

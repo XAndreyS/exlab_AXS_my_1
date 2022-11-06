@@ -104,7 +104,7 @@ def test_button_join(web_browser):
     page.BUTTON_JOIN.click()
     page.WAIT_LOAD()
     page.SWITCH_WINDOW()
-    assert 'ExLab_registration_bot' in page.GET_URL(), page.GET_PAGE()#'Нет перехода на страницу с ссылкой на ТГ Бот проекта'
+    assert 'ExLab_registration_bot' in page.GET_URL(), 'Нет перехода на страницу с ссылкой на ТГ Бот проекта'
 
 
 

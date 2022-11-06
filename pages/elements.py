@@ -5,11 +5,7 @@ import time
 from termcolor import colored
 
 from selenium.webdriver import ActionChains
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.keys import Keys
-
-
 from selenium import webdriver
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.common.by import By
@@ -23,6 +19,7 @@ class WebElement(object):
     _page = None
     _timeout = 10
     _wait_after_click = False  # TODO: how we can wait after click? TODO: как мы можем ждать после клика?
+
 
     def __init__(self, timeout=10, wait_after_click=False, **kwargs):
         self._timeout = timeout
@@ -216,9 +213,13 @@ class WebElement(object):
         # Make screen-shot of the page:
         self._web_driver.save_screenshot(file_name)
 
-    def scroll_my(self):
+    def scroll_my_down(self):
         element = self.find()
         element.send_keys(Keys.END)
+
+    def scroll_my_up(self):
+        element = self.find()
+        element.send_keys(Keys.HOME)
 
     def scroll_to_element(self):
         """ Scroll page to the element.
@@ -235,6 +236,23 @@ class WebElement(object):
             element.send_keys(Keys.DOWN)
         except Exception as e:#
             pass  # Just ignore the error if we can't send the keys to the element -  Просто игнорируйте ошибку, если мы не можем отправить ключи к элементу
+
+    def scroll_to_element_js(self):
+        """ Scroll page to the element.
+         Прокрутите страницу до элемента."""
+
+        element = self.find()
+
+        # Scroll page to the element(Прокрутить страницу до элемента:):
+        # Option #1 to scroll to element(Вариант №1 для прокрутки до элемента:):
+        # element.send_keys(Keys.DOWN)
+
+        # Option #2 to scroll to element(Вариант №2 для прокрутки до элемента:):
+        try:
+            self._web_driver.execute_script("arguments[0].scrollIntoView();", element)
+        except Exception as e:#
+            pass  # Just ignore the error if we can't send the keys to the element -  Просто игнорируйте ошибку, если мы не можем отправить ключи к элементу
+
 
     def delete(self):
         """ Deletes element from the page.
@@ -276,27 +294,24 @@ class WebElement(object):
         if self._wait_after_click:
             self._page.wait_page_loaded()
 
-
     def get_property(self, attr_name):
         """ Тестирование моей новой функции"""
         results = []
         element = self.find()
 
-
         results= element.get_property(attr_name)
 
         return results
-
 
     def get_css(self, attr_name):
         """ Тестирование моей новой функции, получение css"""
         results = []
         element = self.find()
 
-
         results= element.value_of_css_property(attr_name)
 
         return results
+
 
 class ManyWebElements(WebElement):
 
