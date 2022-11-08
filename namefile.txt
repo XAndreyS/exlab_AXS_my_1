@@ -1,2 +1,3 @@
     with open("namefile.txt", 'w', encoding="utf=8") as myFile:
         print(img_logo_head_url, file=myFile)
+

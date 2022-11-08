@@ -48,10 +48,27 @@ class WebPage(object):
         self._web_driver.save_screenshot(file_name)
 
     def scroll_my_base(self):
-        self._web_driver.execute_script("window.scrollTo(0, 1080);")
-        #self._web_driver.execute_script('window.scrollTo(0, document.body.scrollHeight);')
+        #self._web_driver.execute_script("window.scrollTo(0, -250);")
+        self._web_driver.execute_script('window.scrollTo(0, document.body.scrollHeight);')
 
-    def scroll_down(self, offset=1000):
+    def scroll_to(self,element):
+        """ Scroll page to the element.
+         Прокрутите страницу до элемента."""
+
+        #element = None
+
+        # Scroll page to the element(Прокрутить страницу до элемента:):
+        # Option #1 to scroll to element(Вариант №1 для прокрутки до элемента:):
+        # element.send_keys(Keys.DOWN)
+
+        # Option #2 to scroll to element(Вариант №2 для прокрутки до элемента:):
+        try:
+            self._web_driver.execute_script("arguments[0].scrollIntoView();", element)
+        except Exception as e:#
+            pass  # Just ignore the error if we can't send the keys to the element -  Просто игнорируйте ошибку, если мы не можем отправить ключи к элементу
+
+
+    def scroll_down(self, offset=0):
         """ Scroll the page down.
         Прокрутите страницу вниз."""
 

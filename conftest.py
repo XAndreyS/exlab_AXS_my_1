@@ -34,10 +34,10 @@ def pytest_runtest_makereport(item, call):
     setattr(item, "rep_" + rep.when, rep)
     return rep
 
-
+time.sleep(2)
 @pytest.fixture
 def web_browser(request, selenium):
-
+    time.sleep(2)
     browser = selenium
     browser.set_window_size(1400, 1000)
 
@@ -138,6 +138,7 @@ def pytest_collection_finish(session):
         time.sleep(2)
 
         pytest.exit('Done!')
-        #quit()
+        quit()
         #pytest.quit # мои мучения по предотвращению не  закрытия процессов браузера на моём ПК
         time.sleep(3) # # мои мучения по предотвращению не  закрытия процессов браузера на моём ПК
+

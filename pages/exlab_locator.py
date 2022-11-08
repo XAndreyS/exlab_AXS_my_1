@@ -98,6 +98,7 @@ class AboutUs(WebPage):
 
         super().__init__(web_driver, url)
 
+
     # Ждать загрузку страницы
     WAIT_LOAD = WebPage.wait_page_loaded
     # Получить url страницы
@@ -123,9 +124,36 @@ class AboutUs(WebPage):
     BODY = WebElement(tag_name='html')
 
 
+class Projects(WebPage):
+    def __init__(self, web_driver, url=''):
+        if not url:
+            url = os.getenv("MAIN_URL") or 'http://test.exlab.team/'
 
+        super().__init__(web_driver, url)
 
+    # Ждать загрузку страницы
+    WAIT_LOAD = WebPage.wait_page_loaded
+    # Получить url страницы
+    GET_URL = WebPage.get_current_url
+    GET_PAGE = WebPage.get_page_source
+    # Переключить вкладку
+    SWITCH_WINDOW = WebPage.switch_to_next_window
+    MOVE_DOWN = WebPage.scroll_down
+    BODY = WebElement(tag_name='html')
+    #  Скролл до веб_элемента
+    SCROLL_TO_WEB_ELEMENT = WebPage.scroll_to
 
+    # Заголовок блока Проекты в body
+    #H1_PROJECTS = WebElement(xpath='//div[@class="sc-eCYdqJ koNCEH" and @data-scroll-target="#projects"]')
+    H1_PROJECTS = WebElement(xpath='//div[@id="projects"]/div[@class="sc-eCYdqJ koNCEH is-inview"]')
+    # Заголовки проектов
+    H2_PROJECTS = ManyWebElements(xpath='//h2[@class="sc-dPyBCJ elZmsx is-inview"]')
+    # Логотипы проектов
+    IMG_PROJECTS = ManyWebElements(xpath='//img[@class="sc-bBXxYQ hEflMO"]')
+    # Текст описание проектов
+    TEXT_PROJECTS_DESCRIPT = ManyWebElements(xpath='//p[@class="sc-cOFTSb bNtNdQ is-inview"]')
+    # Текст Руководители проектов
+    TEXT_PRODUCT_OWNER = ManyWebElements(xpath='//span[@class="sc-hTtwUo nouGC"]')
 
 
 

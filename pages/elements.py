@@ -254,6 +254,9 @@ class WebElement(object):
             pass  # Just ignore the error if we can't send the keys to the element -  Просто игнорируйте ошибку, если мы не можем отправить ключи к элементу
 
 
+
+
+
     def delete(self):
         """ Deletes element from the page.
          Удаляет элемент со страницы."""
