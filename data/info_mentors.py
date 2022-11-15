@@ -6,10 +6,10 @@ data_mentors_list = [
             "position": "Senior E-comm Developer / E-comm Technical Product Manager",
             "image": "./images/mentors/stanislav.png",
             "quality": [
-                "6+ лет опыта в сфере IT",
-                "Основная технология — LAMP, стек: Linux + Apache / Nginx + MySQL + PHP",
-                "Знание Magento 1/2, Shopware, Laravel",
-                "Ответит на вопросы о продукт-менеджменте, запуске продуктов, привлечении инвестиций, менеджменте команды"
+                '6+ лет опыта в сфере IT',
+                'Основная технология — LAMP, стек: Linux + Apache / Nginx + MySQL + PHP',
+                'Знание Magento 1/2, Shopware, Laravel',
+                'Ответит на вопросы о продукт-менеджменте, запуске продуктов, привлечении инвестиций, менеджменте команды'
             ]
         },
         {
@@ -19,7 +19,7 @@ data_mentors_list = [
             "quality": [
                 "14+ лет опыта в сфере IT, 8+ лет коммерческого опыта",
                 "Основной стек — JS, Node, TS, React, Next",
-                "Работает в роли Team Lead в компании СберОбразование"
+                "Работает в роли Team Lead в компании СберОбразование"
             ]
         },
         {

@@ -324,6 +324,7 @@ def test_mentors_photo(web_browser, mentors_list):  # Добавить пров�
     assert not page.MENTOR_SPOLER.is_visible(), f'Видно сполер после закрытия элемента элемента {mentors_list}'
 
 
+@pytest.mark.xfail
 @pytest.mark.parametrize('mentors_param', [
     'mentor_1',
     'mentor_2',
@@ -337,7 +338,7 @@ def test_mentors_photo(web_browser, mentors_list):  # Добавить пров�
                             'Ментор_4'
                         ])
 def test_mentors_info(web_browser,mentors_param):
-    """ри открытом спойлере отображается информации о менторе"""
+    """При открытом спойлере отображается информации о менторе"""
     dict_mentors = {'mentor_1': 0,
                     'mentor_2': 1,
                     'mentor_3': 2,
@@ -354,14 +355,14 @@ def test_mentors_info(web_browser,mentors_param):
     page.SCROLL_TO_WEB_ELEMENT(mentor[dict_mentors.get(mentors_param)])
     mentor[dict_mentors.get(mentors_param)].click()
     time.sleep(2)
-    m = mentor_info[dict_mentors.get(mentors_param)].text
-    m1=m.split('\n')
-    for i in range(len(m1)):
+    mentor_info_text = mentor_info[dict_mentors.get(mentors_param)].text
+    mentor_info_text_clear = mentor_info_text.split('\n')
+    for i in range(len(mentor_info_text_clear)):
+        assert mentor_info_text_clear[i] in data_mentors_list[dict_mentors.get(mentors_param)].get("quality")[i], \
+            f'Не соответствие информации о менторее {mentors_param}'
 
-        with open("namefile1.txt", 'a', encoding="utf=8") as myFile:
-            print(f'\n{m1[i]} == {data_mentors_list[dict_mentors.get(mentors_param)].get("quality")[i]}', file=myFile)
 
-    assert 2==2
+
 
 
 
