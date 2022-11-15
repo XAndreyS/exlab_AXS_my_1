@@ -20,7 +20,6 @@ class WebElement(object):
     _timeout = 10
     _wait_after_click = False  # TODO: how we can wait after click? TODO: как мы можем ждать после клика?
 
-
     def __init__(self, timeout=10, wait_after_click=False, **kwargs):
         self._timeout = timeout
         self._wait_after_click = wait_after_click
@@ -253,10 +252,6 @@ class WebElement(object):
         except Exception as e:#
             pass  # Just ignore the error if we can't send the keys to the element -  Просто игнорируйте ошибку, если мы не можем отправить ключи к элементу
 
-
-
-
-
     def delete(self):
         """ Deletes element from the page.
          Удаляет элемент со страницы."""
@@ -388,8 +383,6 @@ class ManyWebElements(WebElement):
 
         return results
 
-
-
     def highlight_and_make_screenshot(self, file_name='element.png'):
         """ Highlight elements and make the screen-shot of all page.
          Выделите элементы и сделайте скриншот всей страницы."""
@@ -397,11 +390,11 @@ class ManyWebElements(WebElement):
         elements = self.find()
 
         for element in elements:
-            # Scroll page to the element(Прокрутите страницу до элемента:):
-            self._web_driver.execute_script("arguments[0].scrollIntoView();", element)
+
 
             # Add red border to the style(Добавьте красную рамку к стилю:):
             self._web_driver.execute_script("arguments[0].style.border='3px solid red'", element)
 
         # Make screen-shot of the page(Сделайте скриншот страницы:):
         self._web_driver.save_screenshot(file_name)
+

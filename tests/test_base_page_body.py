@@ -1,13 +1,14 @@
 #  3) Run tests:
 #     python -m pytest -v --driver Chrome --driver-path ~/chrome tests/*
 from selenium import webdriver
-from pages.exlab_locator import YourOpportunity, AboutUs, Projects
+from pages.exlab_locator import YourOpportunity, AboutUs, Projects,  Mentors
 import time
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.print_page_options import PrintOptions
 import re
 import pytest
-
+from settings import BasePageSet
+from data.info_mentors import data_mentors_list
 
 def for_scroll(page):
     page.WAIT_LOAD()
@@ -62,7 +63,7 @@ def test_h1_about_us(web_browser):
 
     page = AboutUs(web_browser)
     page.WAIT_LOAD()
-    for_scroll(page=AboutUs(web_browser))
+    for_scroll(page=AboutUs(web_browser))  # Функция скролла доподвала и обратно
     #page.H1_ABOUT_US.highlight_and_make_screenshot()  #scroll_to_element()
     page.H1_ABOUT_US.scroll_to_element_js()
     time.sleep(1)
@@ -77,7 +78,7 @@ def test_text_about_us(web_browser):
     page = AboutUs(web_browser)
     page.WAIT_LOAD()
 
-    for_scroll(page=AboutUs(web_browser))
+    for_scroll(page=AboutUs(web_browser))  # Функция скролла доподвала и обратно
     page.H1_ABOUT_US.scroll_to_element_js()
     time.sleep(1)
     assert page.TEXT_ABOUT_US.is_presented(), 'Нет элемента текст под надписью О нас'
@@ -90,7 +91,7 @@ def test_h1_why_exlab(web_browser):
 
     page = AboutUs(web_browser)
     page.WAIT_LOAD()
-    for_scroll(page=AboutUs(web_browser))
+    for_scroll(page=AboutUs(web_browser))  # Функция скролла доподвала и обратно
     page.H1_WHY_EXLAB.scroll_to_element_js()
     time.sleep(1)
     assert page.H1_WHY_EXLAB.is_presented(), 'Нет элемента Почему ExLab?'
@@ -103,7 +104,7 @@ def test_text_why_exlab(web_browser):
 
     page = AboutUs(web_browser)
     page.WAIT_LOAD()
-    for_scroll(page=AboutUs(web_browser))
+    for_scroll(page=AboutUs(web_browser))  # Функция скролла доподвала и обратно
     page.H1_WHY_EXLAB.scroll_to_element_js()
     time.sleep(1)
     text_list_why_exlab = page.TEXT_WHY_EXLAB.count()
@@ -117,7 +118,7 @@ def test_button_join_body(web_browser):
 
     page = AboutUs(web_browser)
     page.WAIT_LOAD()
-    for_scroll(page=AboutUs(web_browser))
+    for_scroll(page=AboutUs(web_browser))  # Функция скролла доподвала и обратно
     page.BUTTON_JOIN.scroll_to_element_js()
     time.sleep(1)
     assert page.BUTTON_JOIN.is_visible(), 'Элемента кнопка Присоедениться не видно'
@@ -133,7 +134,7 @@ def test_h1_projects(web_browser):
 
     page = Projects(web_browser)
     page.WAIT_LOAD()
-    for_scroll(page=Projects(web_browser))
+    for_scroll(page=Projects(web_browser))  # Функция скролла доподвала и обратно
     page.H1_PROJECTS.scroll_to_element_js()
     time.sleep(1)
     assert page.H1_PROJECTS.is_visible(), 'Элемент с надписью Проекты не виден'
@@ -154,13 +155,11 @@ def test_h2_projects(web_browser, h2_element):
     dict_projects = {'Exlab': 0, 'Healthy life': 1,  'Easyhelp': 2}
     page = Projects(web_browser)
     page.WAIT_LOAD()
-    for_scroll(page=Projects(web_browser))
+    for_scroll(page=Projects(web_browser))  # Функция скролла доподвала и обратно
     #page.H1_PROJECTS.scroll_to_element_js()
     list_h2_projects = page.H2_PROJECTS
     page.SCROLL_TO_WEB_ELEMENT(list_h2_projects[dict_projects.get(h2_element)])
     time.sleep(1)
-    with open("namefile1.txt", 'w', encoding="utf=8") as myFile:
-        print(f'{list(dict_projects.keys())[0]}\ntype{type(dict_projects.keys())}', file=myFile)
     assert list_h2_projects[dict_projects.get(h2_element)].is_displayed(),\
         f'Не видно элементa с названием проекта {h2_element}'
     assert list(dict_projects.keys())[0] or list(dict_projects.keys())[1] or \
@@ -183,7 +182,7 @@ def test_logo_projects(web_browser, logo_element):  # Добавить ссыл�
     dict_projects = {'Exlab': 0, 'Healthy life': 1, 'Easyhelp': 2}
     page = Projects(web_browser)
     page.WAIT_LOAD()
-    for_scroll(page=Projects(web_browser))
+    for_scroll(page=Projects(web_browser))  # Функция скролла доподвала и обратно
     page.H1_PROJECTS.scroll_to_element_js()
     time.sleep(1)
     list_logo_projects = page.IMG_PROJECTS
@@ -196,9 +195,6 @@ def test_logo_projects(web_browser, logo_element):  # Добавить ссыл�
                'http://test.exlab.team/images/projects/logoEasyhelp.svg']
     assert list_logo_projects[dict_projects.get(logo_element)].is_displayed(), \
         f'Не видно элементa с логотипом проекта {logo_element}'
-
-    with open("namefile1.txt", 'a', encoding="utf=8") as myFile:
-        print(f'{list_atributte_logo[dict_projects.get(logo_element)]}', file=myFile)
     assert list_atributte_logo[dict_projects.get(logo_element)] != '', \
         f'Отсутствует или не правильная ссылка на лого проекта {logo_element}'
 
@@ -218,7 +214,7 @@ def test_text_projects(web_browser, text_owner_element):
     dict_projects = {'Exlab': 0, 'Healthy life': 1, 'Easyhelp': 2}
     page = Projects(web_browser)
     page.WAIT_LOAD()
-    for_scroll(page=Projects(web_browser))
+    for_scroll(page=Projects(web_browser))  # Функция скролла доподвала и обратно
     page.H1_PROJECTS.scroll_to_element_js()
     time.sleep(1)
     list_text_projects = page.TEXT_PROJECTS_DESCRIPT  # текст в описании проекта
@@ -230,24 +226,142 @@ def test_text_projects(web_browser, text_owner_element):
     assert list_text_projects[dict_projects.get(text_owner_element)].is_displayed(), \
         f'Не видно элементa с логотипом проекта {text_owner_element}'
 
-    with open("namefile1.txt", 'a', encoding="utf=8") as myFile:
-        print(f'{list_text_projects[dict_projects.get(text_owner_element)].text}\n'
-              f'{list_text_product_owner[dict_projects.get(text_owner_element)].text}', file=myFile)
     assert list_text_projects[dict_projects.get(text_owner_element)].text != '', \
         f'Отсутствует или не правильная ссылка на лого проекта {text_owner_element}'
     assert list_text_product_owner[dict_projects.get(text_owner_element)].text != '', \
         f'Отсутствует или не правильная ссылка на лого проекта {text_owner_element}'
 
 
+def test_h1_mentors(web_browser):
+    """Отображение надписи Менторы"""
+    page = Projects(web_browser)
+    page.WAIT_LOAD()
+    for_scroll(page=Projects(web_browser))  # Функция скролла доподвала и обратно
+    page.H1_MENTORS.scroll_to_element_js()
+    time.sleep(2)
+    assert page.H1_MENTORS.is_presented(), 'Нет элемента  Менторы'
+    assert page.H1_MENTORS.is_visible(), 'Не видно элемента Менторы'
+    assert 'Менторы' in page.H1_MENTORS.get_text(), 'В элементе нет текста Менторы'
 
 
+@pytest.mark.parametrize('mentors_list', [
+    'mentor_1',
+    'mentor_2',
+    'mentor_3',
+    'mentor_4'
+    ],
+                        ids=[
+                            'Ментор_1',
+                            'Ментор_2',
+                            'Ментор_3',
+                            'Ментор_4'
+                        ])
+def test_mentors_text(web_browser, mentors_list):
+    """При нажатии на область ментора , открывается спойлер"""
+    dict_mentors = {'mentor_1': 0,
+    'mentor_2': 1,
+    'mentor_3': 2,
+    'mentor_4': 3,
+               }
+    settings = BasePageSet()
+    page = Mentors(web_browser)
+    page.WAIT_LOAD()
+    for_scroll(page=Projects(web_browser))  # Функция скролла доподвала и обратно
+
+    mentor = page.MENTORS_LIST
+    mentor_close = page.MENTORS_LIST_CLOSE
+    page.SCROLL_TO_WEB_ELEMENT(mentor[dict_mentors.get(mentors_list)])
+    assert mentor[dict_mentors.get(mentors_list)] is not None, f'Нет элемента {mentors_list}'
+    assert mentor[dict_mentors.get(mentors_list)].is_displayed(), f'Не видно элемента {mentors_list}'
+    assert not page.MENTOR_SPOLER.is_visible(), f'Видно сполер до открытия элемента {mentors_list}'
+    mentor[dict_mentors.get(mentors_list)].click()
+    time.sleep(2)
+    assert page.MENTOR_SPOLER.is_visible(), f'Не видно сполера после открытия {mentors_list}'
+    mentor_close[dict_mentors.get(mentors_list)].click()
+    assert not page.MENTOR_SPOLER.is_visible(), f'Видно сполер до открытия элемента {mentors_list}'
 
 
+@pytest.mark.parametrize('mentors_list', [
+    'mentor_1',
+    'mentor_2',
+    'mentor_3',
+    'mentor_4'
+    ],
+                        ids=[
+                            'Ментор_1',
+                            'Ментор_2',
+                            'Ментор_3',
+                            'Ментор_4'
+                        ])
+def test_mentors_photo(web_browser, mentors_list):  # Добавить проверку соответствия фото
+    """В элементе фото ментора корректная ссылкана фото"""
+    dict_mentors = {'mentor_1': 0,
+    'mentor_2': 1,
+    'mentor_3': 2,
+    'mentor_4': 3,
+                    }
+    settings = BasePageSet()
+    page = Mentors(web_browser)
+    page.WAIT_LOAD()
+    for_scroll(page=Projects(web_browser))  # Функция скролла доподвала и обратно
+    dict_photo = settings.mentors_link_photo
+    mentor = page.MENTORS_LIST
+    mentor_close = page.MENTORS_LIST_CLOSE
+    page.SCROLL_TO_WEB_ELEMENT(mentor[dict_mentors.get(mentors_list)])
+    assert mentor[dict_mentors.get(mentors_list)] is not None, f'Нет элемента {mentors_list}'
+    assert mentor[dict_mentors.get(mentors_list)].is_displayed(), f'Не видно элемента {mentors_list}'
+    assert not page.MENTOR_SPOLER.is_visible(), f'Видно сполер до открытия элемента {mentors_list}'
+    mentor[dict_mentors.get(mentors_list)].click()
+    time.sleep(2)
+    assert page.MENTOR_SPOLER.is_visible(), f'Не видно сполера после открытия {mentors_list}'
+    mentors_photo = page.IMG_MENTORS
+    with open("namefile.txt", 'w', encoding="utf=8") as myFile:
+        print(f'{mentors_photo[dict_mentors.get(mentors_list)].get_attribute("src")} == {dict_photo.get(mentors_list)}', file=myFile)
+    assert mentors_photo[dict_mentors.get(mentors_list)].get_attribute("src") == dict_photo.get(mentors_list),\
+        f'Ссылкана фото не совпадает {mentors_list}'
+    mentor_close[dict_mentors.get(mentors_list)].click()
+
+    assert not page.MENTOR_SPOLER.is_visible(), f'Видно сполер после закрытия элемента элемента {mentors_list}'
 
 
+@pytest.mark.parametrize('mentors_param', [
+    'mentor_1',
+    'mentor_2',
+    'mentor_3',
+    'mentor_4'
+    ],
+                        ids=[
+                            'Ментор_1',
+                            'Ментор_2',
+                            'Ментор_3',
+                            'Ментор_4'
+                        ])
+def test_mentors_info(web_browser,mentors_param):
+    """ри открытом спойлере отображается информации о менторе"""
+    dict_mentors = {'mentor_1': 0,
+                    'mentor_2': 1,
+                    'mentor_3': 2,
+                    'mentor_4': 3,
+                    }
+    settings = BasePageSet()
+    page = Mentors(web_browser)
+    page.WAIT_LOAD()
+    for_scroll(page=Projects(web_browser))  # Функция скролла доподвала и обратно
+    dict_photo = settings.mentors_link_photo
+    mentor = page.MENTORS_LIST
+    mentor_close = page.MENTORS_LIST_CLOSE
+    mentor_info = page.INFO_MENTORS
+    page.SCROLL_TO_WEB_ELEMENT(mentor[dict_mentors.get(mentors_param)])
+    mentor[dict_mentors.get(mentors_param)].click()
+    time.sleep(2)
+    m = mentor_info[dict_mentors.get(mentors_param)].text
+    m1=m.split('\n')
+    for i in range(len(m1)):
 
+        with open("namefile1.txt", 'a', encoding="utf=8") as myFile:
+            print(f'\n{m1[i]} == {data_mentors_list[dict_mentors.get(mentors_param)].get("quality")[i]}', file=myFile)
 
-
+    assert 2==2
 
 
 

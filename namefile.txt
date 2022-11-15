@@ -1,3 +1,11 @@
     with open("namefile.txt", 'w', encoding="utf=8") as myFile:
-        print(img_logo_head_url, file=myFile)
+        print(f'{mentors_photo[dict_mentors.get(mentors_list)].get_attribute("src")} == {dict_photo.get(mentors_list)}', file=myFile)
+    assert mentors_photo[dict_mentors.get(mentors_list)].get_attribute("src") == dict_photo.get(mentors_list),\
+        f'Ссылкана фото не совпадает {mentors_list}'
 
+
+
+
+     with open("namefile1.txt", 'a', encoding="utf=8") as myFile:
+        print(f'{list_text_projects[dict_projects.get(text_owner_element)].text}\n'
+              f'{list_text_product_owner[dict_projects.get(text_owner_element)].text}', file=myFile)

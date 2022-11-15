@@ -156,6 +156,52 @@ class Projects(WebPage):
     TEXT_PRODUCT_OWNER = ManyWebElements(xpath='//span[@class="sc-hTtwUo nouGC"]')
 
 
+class Mentors(WebPage):
+    def __init__(self, web_driver, url=''):
+        if not url:
+            url = os.getenv("MAIN_URL") or 'http://test.exlab.team/'
+
+        super().__init__(web_driver, url)
+
+    # Ждать загрузку страницы
+    WAIT_LOAD = WebPage.wait_page_loaded
+    # Получить url страницы
+    GET_URL = WebPage.get_current_url
+    GET_PAGE = WebPage.get_page_source
+    # Переключить вкладку
+    SWITCH_WINDOW = WebPage.switch_to_next_window
+    MOVE_DOWN = WebPage.scroll_down
+    BODY = WebElement(tag_name='html')
+    #  Скролл до веб_элемента
+    SCROLL_TO_WEB_ELEMENT = WebPage.scroll_to
+
+    # Заголовок Блока Менторы
+    H1_MENTORS = WebElement(xpath='//div[@id="mentors"]/div[@class="sc-eCYdqJ koNCEH is-inview"]')
+
+    # Список элементов с Менторами
+    MENTORS_LIST = ManyWebElements(xpath='//div[@class="sc-ZyCDH hnTMjb"]')
+    # Список с Менторами для закрытия
+    MENTORS_LIST_CLOSE = ManyWebElements(xpath='//div[@class="sc-jOhDuK jCfVZq"]')
+    # Область ментора спойлер
+    MENTOR_SPOLER = WebElement(xpath='//div[@class="sc-kIKDeO hGmlWc"]')
+    MENTORS_SPOLER = ManyWebElements(xpath='//div[@class="sc-kIKDeO hGmlWc"]')
+    # область ментора , знак "+"
+    SIGN_1_MENOR = ManyWebElements(xpath='//span[@class="sc-bUbCnL bdRiog"]')
+    # область ментора , знак "-"
+    SIGN_2_MENOR = ManyWebElements(xpath='//span[@class="sc-bUbCnL bChkBl"]')
+    # Фото менторов
+    IMG_MENTORS = ManyWebElements(xpath='//img[@class="sc-hNKHps bLOuOe"]')
+    # Информация о менторах
+    INFO_MENTORS = ManyWebElements(xpath='//ul[@class="sc-cZwWEu kmkvji"]')
+
+
+
+
+
+
+
+
+
 
 
 
