@@ -1,7 +1,7 @@
 #  3) Run tests:
 #     python -m pytest -v --driver Chrome --driver-path ~/chrome tests/*
 from selenium import webdriver
-from pages.exlab_locator import YourOpportunity, AboutUs, Projects,  Mentors
+from pages.exlab_locator import YourOpportunity, AboutUs, Projects,  Mentors, StartUpFor
 import time
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.print_page_options import PrintOptions
@@ -360,6 +360,45 @@ def test_mentors_info(web_browser,mentors_param):
     for i in range(len(mentor_info_text_clear)):
         assert mentor_info_text_clear[i] in data_mentors_list[dict_mentors.get(mentors_param)].get("quality")[i], \
             f'Не соответствие информации о менторее {mentors_param}'
+
+#
+def test_h1_start_up_for(web_browser):
+    """Отображение Заголовка StartUp для """
+    page = StartUpFor(web_browser)
+    page.WAIT_LOAD()
+    for_scroll(page=Projects(web_browser))  # Функция скролла доподвала и обратно
+    page.START_UP_FOR_H1.scroll_to_element_js()
+    time.sleep(2)
+    assert page.START_UP_FOR_H1.is_presented(), 'Нет элемента  StartUp для'
+    assert page.START_UP_FOR_H1.is_visible(), 'Не видно элемента StartUp для'
+    assert 'StartUp для' in page.START_UP_FOR_H1.get_text(), 'В элементе нет текста StartUp для '
+
+
+def test_h2_start_up_for_juniors(web_browser):
+    """Отображение Заголовка h2 Juniors """
+    page = StartUpFor(web_browser)
+    page.WAIT_LOAD()
+    for_scroll(page=Projects(web_browser))  # Функция скролла доподвала и обратно
+    page.START_UP_FOR_JUNIORS_H2.scroll_to_element_js()
+    time.sleep(2)
+    assert page.START_UP_FOR_JUNIORS_H2.is_presented(), 'Нет элемента  Juniors'
+    assert page.START_UP_FOR_JUNIORS_H2.is_visible(), 'Не видно элемента Juniors'
+    assert 'Juniors' in page.START_UP_FOR_JUNIORS_H2.get_text(), 'В элементе нет текста Juniors'
+
+
+def test_text_start_up_for_juniors(web_browser):
+    """Отображение текста под h2 Juniors"""
+    page = StartUpFor(web_browser)
+    page.WAIT_LOAD()
+    for_scroll(page=Projects(web_browser))  # Функция скролла доподвала и обратно
+    page.START_UP_FOR_JUNIORS_H2.scroll_to_element_js()
+    time.sleep(2)
+    text_h2_juniors = page.START_UP_FOR_JUNIORS_H2
+    for text in text_h2_juniors:
+        page.SCROLL_TO_WEB_ELEMENT(text)
+        assert text is not None, 'Нет элемента  текста Juniors'
+        assert text.is_displayed(), 'Не видно элемента текста Juniors'
+        #assert '' in page.START_UP_FOR_JUNIORS_H2.get_text(), 'В элементе нет текста под h2 Juniors'
 
 
 

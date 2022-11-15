@@ -195,10 +195,36 @@ class Mentors(WebPage):
     INFO_MENTORS = ManyWebElements(xpath='//ul[@class="sc-cZwWEu kmkvji"]')
 
 
+class StartUpFor(WebPage):
 
+    def __init__(self, web_driver, url=''):
+        if not url:
+            url = os.getenv("MAIN_URL") or 'http://test.exlab.team/'
 
+        super().__init__(web_driver, url)
 
+    # Ждать загрузку страницы
+    WAIT_LOAD = WebPage.wait_page_loaded
+    # Получить url страницы
+    GET_URL = WebPage.get_current_url
+    GET_PAGE = WebPage.get_page_source
+    # Переключить вкладку
+    SWITCH_WINDOW = WebPage.switch_to_next_window
+    MOVE_DOWN = WebPage.scroll_down
+    BODY = WebElement(tag_name='html')
+    #  Скролл до веб_элемента
+    SCROLL_TO_WEB_ELEMENT = WebPage.scroll_to
 
+    #  Заголовок StartUp для
+    START_UP_FOR_H1 = WebElement(xpath='//div[@class="sc-eCYdqJ koNCEH is-inview" and @data-scroll-target="#startup"]')
+    # Заголовок h2 для Juniors
+    START_UP_FOR_JUNIORS_H2 = WebElement(xpath='//div[@class="sc-eKszNL gOjGBb"]/h2')
+    # Текст под h2 для JUNIORS (3 шт\абзаца)
+    START_UP_FOR_JUNIORS_TEXT = ManyWebElements(xpath='//div[@class="sc-eKszNL gOjGBb"]/p')
+    # Заголовок h2 для Рекрутёров
+    START_UP_FOR_RECRUITERS_H2 = WebElement(xpath='//div[@class="sc-lbOyJj EdpoA"]/h2')
+    # Текст под h2 для Рекрутёров
+    START_UP_FOR_RECRUITERS_TEXT = ManyWebElements(xpath='//div[@class="sc-lbOyJj EdpoA"]/p')
 
 
 
