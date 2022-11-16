@@ -252,7 +252,7 @@ class HelpTheProject(WebPage):
     # Текст Для Помочь проекту (все абзацы)
     HELP_THE_PROJECT_TEXT = WebElement(xpath='//div[@class="sc-fvNpTx eJpwBO"]')
     # Кнопка Boosty (локатор див кнопки/затем на a-ссылку)
-    BUTTON_BOOSTY = WebElement(xpatth='//div[@class="sc-bWXABl gnBRZN"]/a[@class="sc-dkzDqf gpYSxm"]')
+    BUTTON_BOOSTY = WebElement(xpath='//div[@class="sc-bWXABl gnBRZN"]/a[@class="sc-dkzDqf gpYSxm"]')
     # Кнопка Patreon (локатор див кнопки/затем на a-ссылку)
     BUTTON_PATREON = WebElement(xpath='//div[@class="sc-bWXABl gnBRZN"]/a[@class="sc-hKMtZM etdNbW"]')
 
