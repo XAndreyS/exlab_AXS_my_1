@@ -435,7 +435,7 @@ def test_help_the_project_text(web_browser):
 
 
 def test_button_boosty(web_browser):
-    """Текст блока Помочь проекту"""
+    """Кнопка Boosty"""
     page = HelpTheProject(web_browser)
     page.WAIT_LOAD()
     for_scroll(page=Projects(web_browser))  # Функция скролла доподвала и обратно
