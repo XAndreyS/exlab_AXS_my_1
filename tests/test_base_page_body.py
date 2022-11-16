@@ -1,7 +1,7 @@
 #  3) Run tests:
 #     python -m pytest -v --driver Chrome --driver-path ~/chrome tests/*
 from selenium import webdriver
-from pages.exlab_locator import YourOpportunity, AboutUs, Projects,  Mentors, StartUpFor
+from pages.exlab_locator import YourOpportunity, AboutUs, Projects,  Mentors, StartUpFor, HelpTheProject
 import time
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.print_page_options import PrintOptions
@@ -361,7 +361,9 @@ def test_mentors_info(web_browser,mentors_param):
         assert mentor_info_text_clear[i] in data_mentors_list[dict_mentors.get(mentors_param)].get("quality")[i], \
             f'Не соответствие информации о менторее {mentors_param}'
 
-#
+# -----------Проверка соответствия фото???????????????7
+
+
 def test_h1_start_up_for(web_browser):
     """Отображение Заголовка StartUp для """
     page = StartUpFor(web_browser)
@@ -393,16 +395,60 @@ def test_text_start_up_for_juniors(web_browser):
     for_scroll(page=Projects(web_browser))  # Функция скролла доподвала и обратно
     page.START_UP_FOR_JUNIORS_H2.scroll_to_element_js()
     time.sleep(2)
-    text_h2_juniors = page.START_UP_FOR_JUNIORS_H2
+    text_h2_juniors = page.START_UP_FOR_RECRUITERS_TEXT
     for text in text_h2_juniors:
         page.SCROLL_TO_WEB_ELEMENT(text)
         assert text is not None, 'Нет элемента  текста Juniors'
         assert text.is_displayed(), 'Не видно элемента текста Juniors'
-        #assert '' in page.START_UP_FOR_JUNIORS_H2.get_text(), 'В элементе нет текста под h2 Juniors'
+        #assert len(page.START_UP_FOR_JUNIORS_H2.get_text()) > 1, 'В элементе нет текста под h2 Juniors'
+        # Довести до ума проверку текста
+
+# -------  Проверка StarsUP для Рекрутеров???????????
 
 
+def test_help_the_project_h1(web_browser):
+    """Заголовок блока Помочь проекту"""
+    page = HelpTheProject(web_browser)
+    page.WAIT_LOAD()
+    for_scroll(page=Projects(web_browser))  # Функция скролла доподвала и обратно
+    page.HELP_THE_PROJECT_H1.scroll_to_element_js()
+    time.sleep(2)
+    assert page.HELP_THE_PROJECT_H1.is_presented(), 'Нет элемента  заголовок Помочь проекту'
+    assert page.HELP_THE_PROJECT_H1.is_visible(), 'Не видно элемента заголовок Помочь проекту'
+    text_h1 = page.HELP_THE_PROJECT_H1.get_text().replace("\n", " ")
+    assert 'Помочь проекту' in text_h1, 'В элементе заголовок Помочь проекту нет текста Помочь проекту'
 
 
+def test_help_the_project_text(web_browser):
+    """Текст блока Помочь проекту"""
+    page = HelpTheProject(web_browser)
+    page.WAIT_LOAD()
+    for_scroll(page=Projects(web_browser))  # Функция скролла доподвала и обратно
+    page.HELP_THE_PROJECT_TEXT.scroll_to_element_js()
+    time.sleep(2)
+    assert page.HELP_THE_PROJECT_TEXT.is_presented(), 'Нет элемента  текст Помочь проекту'
+    assert page.HELP_THE_PROJECT_TEXT.is_visible(), 'Не видно элемента текст Помочь проекту'
+    #text_h1 = page.HELP_THE_PROJECT_TEXT.get_text().replace("\n", " ")
+    with open("namefile1.txt", 'a', encoding="utf=8") as myFile:
+        print(f'{page.HELP_THE_PROJECT_TEXT.get_text()}\n{len(page.HELP_THE_PROJECT_TEXT)}\n{len(page.HELP_THE_PROJECT_TEXT.get_text())}', file=myFile)
+    assert 'Помочь проекту' in page.HELP_THE_PROJECT_TEXT.get_text(), 'В элементе заголовок Помочь проекту нет текста Помочь проекту'
+
+
+def test_button_boosty(web_browser):
+    """Текст блока Помочь проекту"""
+    page = HelpTheProject(web_browser)
+    page.WAIT_LOAD()
+    for_scroll(page=Projects(web_browser))  # Функция скролла доподвала и обратно
+    page.BUTTON_BOOSTY.scroll_to_element_js()
+    time.sleep(2)
+    assert page.BUTTON_BOOSTY.is_presented(), 'Нет элемента  кнопка Boosty'
+    assert page.BUTTON_BOOSTY.is_visible(), 'Не видно элемента кнопка Boosty'
+    assert page.BUTTON_BOOSTY.is_clickable(), 'Не кликабельна кнопка Boosty'
+    page.BUTTON_BOOSTY.click()
+    page.WAIT_LOAD()
+    page.SWITCH_WINDOW()
+    # перенести ссылку в файл(settings)
+    assert 'https://boosty.to/exlab_startup' in page.GET_URL(), 'Нет перехода на страницу сайта Boosty для Exlab'
 
 
 

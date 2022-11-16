@@ -227,8 +227,39 @@ class StartUpFor(WebPage):
     START_UP_FOR_RECRUITERS_TEXT = ManyWebElements(xpath='//div[@class="sc-lbOyJj EdpoA"]/p')
 
 
+class HelpTheProject(WebPage):
+    """Локоторы для блока Помочь проекту и для блока Оставайся на связи"""
+    def __init__(self, web_driver, url=''):
+        if not url:
+            url = os.getenv("MAIN_URL") or 'http://test.exlab.team/'
 
+        super().__init__(web_driver, url)
 
+    # Ждать загрузку страницы
+    WAIT_LOAD = WebPage.wait_page_loaded
+    # Получить url страницы
+    GET_URL = WebPage.get_current_url
+    GET_PAGE = WebPage.get_page_source
+    # Переключить вкладку
+    SWITCH_WINDOW = WebPage.switch_to_next_window
+    MOVE_DOWN = WebPage.scroll_down
+    BODY = WebElement(tag_name='html')
+    #  Скролл до веб_элемента
+    SCROLL_TO_WEB_ELEMENT = WebPage.scroll_to
+
+    # Заголовок h1 Помочь проекту
+    HELP_THE_PROJECT_H1 = WebElement(xpath='//div[@class="sc-jTYCaT NkTuJ"]/div[@class="sc-eCYdqJ koNCEH is-inview"]')
+    # Текст Для Помочь проекту (все абзацы)
+    HELP_THE_PROJECT_TEXT = WebElement(xpath='//div[@class="sc-fvNpTx eJpwBO"]')
+    # Кнопка Boosty (локатор див кнопки/затем на a-ссылку)
+    BUTTON_BOOSTY = WebElement(xpatth='//div[@class="sc-bWXABl gnBRZN"]/a[@class="sc-dkzDqf gpYSxm"]')
+    # Кнопка Patreon (локатор див кнопки/затем на a-ссылку)
+    BUTTON_PATREON = WebElement(xpath='//div[@class="sc-bWXABl gnBRZN"]/a[@class="sc-hKMtZM etdNbW"]')
+
+    # Заголовок Блока Оставайся на связи
+    STAY_CONNECTED_H1 = WebElement(xpath='//div[@class="sc-tsFYE tOJRS"]/div[@class="sc-eCYdqJ koNCEH is-inview"]')
+    # Текст блока Оставайся на связи
+    STAY_CONNECTED_TEXT = WebElement(xpath='//div[@class="sc-bhVIhj iBINeU"]')
 
 
 

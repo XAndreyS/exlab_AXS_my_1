@@ -12,3 +12,4 @@ back_dark = 'rgb(17, 17, 17) none repeat scroll 0% 0% / auto padding-box border-
 re_b = re.split('[()]', back_dark)
 
 print(re_b[1])#
+
