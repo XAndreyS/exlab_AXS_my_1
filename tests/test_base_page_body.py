@@ -442,6 +442,8 @@ def test_button_boosty(web_browser):
     assert page.BUTTON_BOOSTY.is_presented(), 'Нет элемента  кнопка Boosty'
     assert page.BUTTON_BOOSTY.is_visible(), 'Не видно элемента кнопка Boosty'
     assert page.BUTTON_BOOSTY.is_clickable(), 'Не кликабельна кнопка Boosty'
+    # Не проверенный assert
+    # assert 'Boosty' in page.BUTTON_BOOSTY.get_text(), 'Элемент не содержит название Boosty'
     page.BUTTON_BOOSTY.click()
     page.WAIT_LOAD()
     page.SWITCH_WINDOW()
@@ -449,12 +451,50 @@ def test_button_boosty(web_browser):
     assert 'https://boosty.to/exlab_startup' in page.GET_URL(), 'Нет перехода на страницу сайта Boosty для Exlab'
 
 
+@pytest.skip  # функция в разработке, кнопка есть, переходана сайт нет
+def test_button_patreon(web_browser):
+    """Кнопка Patreon"""
+    page = HelpTheProject(web_browser)
+    page.WAIT_LOAD()
+    for_scroll(page=Projects(web_browser))  # Функция скролла доподвала и обратно
+    page.BUTTON_PATREON.scroll_to_element_js()
+    time.sleep(2)
+    assert page.BUTTON_PATREON.is_presented(), 'Нет элемента  кнопка Patreon'
+    assert page.BUTTON_PATREON.is_visible(), 'Не видно элемента кнопка Patreon'
+    assert page.BUTTON_PATREON.is_clickable(), 'Не кликабельна кнопка Patreon'
+    # Не проверенный assert
+    # assert 'Patreon' in page.BUTTON_PATREON.get_text(), 'Элемент не содержит название Boosty'
+    page.BUTTON_PATREON.click()
+    page.WAIT_LOAD()
+    page.SWITCH_WINDOW()
+    # перенести ссылку в файл(settings), получить тестовые данные для проверки
+    #assert 'https://patreon/' in page.GET_URL(), 'Нет перехода на страницу сайта Patreon для Exlab'
 
 
+def test_stay_connected_h1(web_browser):
+    """Заголовок блока Оставайся на связи"""
+    page = HelpTheProject(web_browser)
+    page.WAIT_LOAD()
+    for_scroll(page=Projects(web_browser))  # Функция скролла доподвала и обратно
+    page.STAY_CONNECTED_H1.scroll_to_element_js()
+    time.sleep(2)
+    assert page.STAY_CONNECTED_H11.is_presented(), 'Нет элемента  заголовок Оставайся на связи'
+    assert page.STAY_CONNECTED_H1.is_visible(), 'Не видно элемента заголовок Оставайся на связи'
+    text_h1 = page.STAY_CONNECTED_H1.get_text().replace("\n", " ")
+    assert 'Оставайся на связи' in text_h1, 'В элементе заголовок Оставайся на связи нет текста Оставайся на связи'
 
 
-
-
+def test_stay_connected_text(web_browser):
+    """Текст блока Оставайся на связи"""
+    page = HelpTheProject(web_browser)
+    page.WAIT_LOAD()
+    for_scroll(page=Projects(web_browser))  # Функция скролла доподвала и обратно
+    page.STAY_CONNECTED_TEXT.scroll_to_element_js()
+    time.sleep(2)
+    assert page.STAY_CONNECTED_TEXT.is_presented(), 'Нет элемента  текст блока Оставайся на связи'
+    assert page.STAY_CONNECTED_TEXT.is_visible(), 'Не видно элемента текст блока Оставайся на связи'
+    # Добавить Верификацию валидного текста
+    assert len(page.STAY_CONNECTED_TEXT.get_text()) > 0, 'В элементе заголовок Оставайся на связи нет текста'
 
 
 
