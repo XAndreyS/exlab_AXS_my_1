@@ -493,7 +493,7 @@ def test_stay_connected_text(web_browser):
     time.sleep(2)
     assert page.STAY_CONNECTED_TEXT.is_presented(), 'Нет элемента  текст блока Оставайся на связи'
     assert page.STAY_CONNECTED_TEXT.is_visible(), 'Не видно элемента текст блока Оставайся на связи'
-    # Добавить Верификацию валидного текста
+    # Добавить Верификацию валидного текста ы
     assert len(page.STAY_CONNECTED_TEXT.get_text()) > 0, 'В элементе заголовок Оставайся на связи нет текста'
 
 
