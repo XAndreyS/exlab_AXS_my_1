@@ -4,7 +4,10 @@
 Версия v.4 - пункты чек листас 30 по 40
 
 
-ссылка на чек лист:docs.google.com/spreadsheets/d/1VrgvQVA5jsMJJyTWQWoBctUGF6ClUg3lkx3vL6Mr574/edit?pli=1#gid=888275549
+ссылка на чек лист:
+docs.google.com/spreadsheets/d/1VrgvQVA5jsMJJyTWQWoBctUGF6ClUg3lkx3vL6Mr574/edit?pli=1#gid=888275549
+ссылка на чек лист(черновик,для вопросов и правок):
+https://docs.google.com/spreadsheets/d/180ZKiMlL9kQ_tkrXBGC5p6YD4FjpuqMrD0YDs9e5ao0/edit#gid=888275549
 Адрес тестового веб приложения: ExLab Landing http://test.exlab.team/#
 
 Files

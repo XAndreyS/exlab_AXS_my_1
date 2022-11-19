@@ -380,7 +380,7 @@ def test_h2_start_up_for_juniors(web_browser):
     """Отображение Заголовка h2 Juniors """
     page = StartUpFor(web_browser)
     page.WAIT_LOAD()
-    for_scroll(page=Projects(web_browser))  # Функция скролла доподвала и обратно
+    for_scroll(page=Projects(web_browser))  # Функция скролла до подвала и обратно
     page.START_UP_FOR_JUNIORS_H2.scroll_to_element_js()
     time.sleep(2)
     assert page.START_UP_FOR_JUNIORS_H2.is_presented(), 'Нет элемента  Juniors'

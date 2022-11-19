@@ -262,11 +262,40 @@ class HelpTheProject(WebPage):
     STAY_CONNECTED_TEXT = WebElement(xpath='//div[@class="sc-bhVIhj iBINeU"]')
 
 
+class Footer(WebPage):
+    """Локоторы для блока footer"""
+    def __init__(self, web_driver, url=''):
+        if not url:
+            url = os.getenv("MAIN_URL") or 'http://test.exlab.team/'
 
+        super().__init__(web_driver, url)
 
+    # Ждать загрузку страницы
+    WAIT_LOAD = WebPage.wait_page_loaded
+    # Получить url страницы
+    GET_URL = WebPage.get_current_url
+    GET_PAGE = WebPage.get_page_source
+    # Переключить вкладку
+    SWITCH_WINDOW = WebPage.switch_to_next_window
+    MOVE_DOWN = WebPage.scroll_down
+    BODY = WebElement(tag_name='html')
+    #  Скролл до веб_элемента
+    SCROLL_TO_WEB_ELEMENT = WebPage.scroll_to
 
-
-
+    # логотип Exlab
+    LOGO_EXLAB = WebElement(xpath='//div[@class="sc-fIavCj fEzmxG"]')
+    # Подпись под логотипом
+    LOGO_EXLAB_TEXT = WebElement(xpath='//div[@class="sc-evrZIY hdIkLU"]')
+    # ссылка LNKDN - https://www.linkedin.com/company/exlab-start-up/mycompany/
+    LINK_LNKDN = WebElement(xpath='//li[@class="sc-dkdnUF fbGNMP"][1]')
+    # ссылка INSTGRM - https://www.instagram.com/exlab_startup/
+    LINK_INSTGRM = WebElement(xpath='//li[@class="sc-dkdnUF fbGNMP"][2]')
+    # ссылка TLGRM - https://t.me/ExLabChannel
+    LINK_TLGRM = WebElement(xpath='//li[@class="sc-dkdnUF fbGNMP"][3]')
+    # ссылка YTB - https://www.youtube.com/channel/UC-TAnVYVN7qg5dgsYQJkuvA
+    LINK_YTB = WebElement(xpath='//li[@class="sc-dkdnUF fbGNMP"][4]')
+    # ссылка info@exlab.team
+    LINK_MAIL_EXLAB = WebElement(xpath='//a[@class="sc-ikjQzJ gjCqBu"]')
 
 
 
